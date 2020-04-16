@@ -19,6 +19,7 @@ class Solution {
     }
     */
    
+   /*
    function rotate(&$nums, $k) {
    		if ($k < 0) {
    			return $nums;
@@ -33,6 +34,29 @@ class Solution {
 
    		return $nums;
    }
+   */
+  
+
+    function rotate(&$nums, $k) {
+        $len = count($nums);
+        if ($k < 0 || $len <= 1) {
+            return $nums;
+        }
+        $k %= count($nums); //需要移动的个数
+        $nums = array_reverse($nums);
+        $this->reverse($nums,0,$k-1);
+        $this->reverse($nums,$k,$len-1);
+
+        return $nums;
+    }
+
+    function reverse(&$nums,$start,$end){
+        while ($start < $end) {
+            $temp = $nums[$start];
+            $nums[$start++] = $nums[$end];
+            $nums[$end--] = $temp;
+        }
+    }
 }
 
 $arr = [1,2,3,4,5,6,7];
